@@ -50,7 +50,7 @@ MongoClient.connect("mongodb://localhost:27017/exampleDb", function (err, db) {
     }, function (err, result) {});
     collection.insert(docs);
     collection.find({
-            mykey: 1
+            mykey: 2
         }
         /*                    , function (err, item) {
                 if (err) {
