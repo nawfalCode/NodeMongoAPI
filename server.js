@@ -7,6 +7,8 @@ var MongoClient = require('mongodb').MongoClient;
 
 // Connect to the db
 MongoClient.connect("mongodb://localhost:27017/exampleDb", function (err, db) {
+    console.log("Start Connecting to Mongo Server ");
+
     if (err) {
         return console.dir(err);
     } else {
@@ -47,13 +49,23 @@ MongoClient.connect("mongodb://localhost:27017/exampleDb", function (err, db) {
         w: 1
     }, function (err, result) {});
     collection.insert(docs);
-     collection.find({
-        mykey: 1
-    }, function (err, item) {
-        if (err) {
-            console.log("we got an error :");
-        } else {
-            console.log(item.datait);
+    collection.find({
+            mykey: 1
+        }
+        /*                    , function (err, item) {
+                if (err) {
+                    console.log("we got an error :");
+                } else {
+                    console.log("we got an output" );
+                    }
+                }
+          */
+    ).toArray(function (error, docs) {
+        if (!error) {
+            console.log("the total number is " + docs.length);
+            for(var i=0;i<docs.length;i++){
+                console.log(docs[i].data);
+            }
         }
     });
 
